@@ -1,19 +1,26 @@
 import { ThemeProvider } from "styled-components";
+import { useState, useEffect } from "react";
 import { darkTheme, lightTheme } from "./utils/Themes.js";
-import styled from "styled-components";
-import Navbar from "./Components/Navbar/index.js";
-
-import Skills from "./Components/Skills";
-import Education from "./Components/Education/Education.js";
-import { BrowserRouter as Router } from "react-router-dom";
-import React, { useState } from "react";
+import Navbar from "./Components/Navbar";
 import "./App.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import HeroSection from "./Components/HeroSection";
+import About from "./Components/About";
+import Skills from "./Components/Skills";
+
+import Contact from "./Components/Contact";
+import Footer from "./Components/Footer";
+import Experience from "./Components/Experience";
+import Education from "./Components/Education";
+
+import styled from "styled-components";
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
   width: 100%;
   overflow-x: hidden;
 `;
+
 const Wrapper = styled.div`
   background: linear-gradient(
       38.73deg,
@@ -28,22 +35,25 @@ const Wrapper = styled.div`
   width: 100%;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 98%, 0 100%);
 `;
-
 function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [openModal, setOpenModal] = useState({ state: false, project: null });
-
+  console.log(openModal);
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      {" "}
       <Router>
-        {" "}
         <Navbar />
         <Body>
+          <HeroSection />
           <Wrapper>
             <Skills />
-            <Education />
+            <Experience />
           </Wrapper>
+          <Wrapper>
+            <Education />
+            <Contact />
+          </Wrapper>
+          <Footer />
         </Body>
       </Router>
     </ThemeProvider>
